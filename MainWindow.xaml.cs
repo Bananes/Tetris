@@ -107,11 +107,19 @@ namespace Project_Tetra
                 }
                 else
                 {
-                    tim.Stop();
-                    scores = scores + 100;
-                    score.Text = scores.ToString();
-                    SupLigne();
-                    DescAuto();
+                    if (actualPiece.CoordoneesX[0] != 0)
+                    {
+                        tim.Stop();
+                        scores = scores + 100;
+                        score.Text = scores.ToString();
+                        SupLigne();
+                        DescAuto();
+                    }
+                    else
+                    {
+                        tim.Stop();
+                        MessageBox.Show("Partie Terminé");
+                    }
                 }
             }
         }
