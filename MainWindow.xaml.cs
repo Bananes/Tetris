@@ -40,6 +40,7 @@ namespace Project_Tetra
             tim.Interval = new TimeSpan(0, 0, 0, 0, 200);
         }
 
+        //Quand une touche est appuyé
         private void ActualPiece_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.Equals(Key.Q))
@@ -61,7 +62,7 @@ namespace Project_Tetra
                 {
                     if (actualPiece.CoordoneesY[actualPiece.CoordoneesY.Count - 1] != 9)
                     {
-                        if (actualPiece.DroiteForme(terrain.grille))
+                        if (actualPiece.DroiteForme(terrain.grille))//Vérifie si la pièce peut se déplacer
                         {
                             actualPiece.RightCoordonee(terrain.grille);
                         }
@@ -70,28 +71,16 @@ namespace Project_Tetra
             }
         }
 
-        public Rectangle CreaCarre()
-        {
-            Rectangle carre = new Rectangle();
-            carre.Height = 40;
-            carre.Width = 40;
-            carre.StrokeThickness = 2;
-            carre.Stroke = Brushes.Plum;
-
-            return carre;
-        }
-
         private void bStart_Click(object sender, RoutedEventArgs e)
         {
-            bStart.Visibility = Visibility.Hidden;
+            bStart.Visibility = Visibility.Hidden; //On enlève la visibilité du bouton start après démarrage
             DescAuto();
         }
 
-        
-
         private void Tim_Tick(object sender, EventArgs e)
         {
-            if (actualPiece.CoordoneesX[actualPiece.CoordoneesX.Count-1] == 14)
+            //Méthode appelé à chaque interval du timer
+            if (actualPiece.CoordoneesX[actualPiece.CoordoneesX.Count-1] == 14) //Vérifie si la pièce se situe en bas de la grille
             {
                 tim.Stop();
                 scores = scores + 100;
@@ -126,6 +115,7 @@ namespace Project_Tetra
 
         public void SupLigne()
         {
+            //Méthode pour supprimer les lignes pleines et faire descendre les autres blocs
             int i;
             int compteur = 0;
             for (int j = 0; j < actualPiece.CoordoneesX.Count; j++)
@@ -134,13 +124,14 @@ namespace Project_Tetra
                 {
                     if (terrain.grille[actualPiece.CoordoneesX[j], i].Fill != Brushes.White)
                     {
-                        compteur++;
+                        //Pour charque case sur une ligne, on vérifie si une case est coloré
+                        compteur++;//si la case est coloré on incrémente le compteur
                     }
                 }
-                if (compteur == 10)
+                if (compteur == 10) //Il n'y a que 10 colonnes sur une ligne
                 {
                     for ( i = 0; i < 10; i++)
-                    {
+                    {//ici on supprime la ligne, on remplace tout les blocs coloré par des blocs blancs
                         terrain.grille[actualPiece.CoordoneesX[j], i].Fill = Brushes.White;
                         compteur = 0;
                     }
@@ -148,6 +139,7 @@ namespace Project_Tetra
                     {
                         for (i = 0; i < 10; i++)
                         {
+                        //On fait descendre les blocs au dessus de la ligne supprimé
                             terrain.grille[a, i].Fill = terrain.grille[a - 1, i].Fill;
                         }
                     }
@@ -160,6 +152,7 @@ namespace Project_Tetra
 
         public void DescAuto()
         {
+            //on va cherché à connaitre la forme suivante aléatoirement
             int random = formeSuivantes.Next(1, 8);
             switch (random)
             {
@@ -192,6 +185,7 @@ namespace Project_Tetra
                     actualPiece = (Linv)suivant;
                     break;
             }
+            //Une fois la pièce choisi on la set sur la grille
             actualPiece.SetCoordoneesY();
             actualPiece.SetCoordoneesX();
             actualPiece.initForme(terrain.grille);
