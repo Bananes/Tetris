@@ -107,7 +107,21 @@ namespace Project_Tetra
                     else
                     {
                         tim.Stop();
-                        MessageBox.Show("Partie Terminé");
+                        MessageBoxResult restart = MessageBox.Show("Partie Terminé. Voulez-vous recommencer ?", "GAME OVER", MessageBoxButton.YesNo);
+                        //Permet à l'utilisateur de recommencé une partie
+                        switch(restart)
+                        {
+                            case MessageBoxResult.Yes:
+                            Grille grilleRestart = new Grille();
+                            grilleRestart.CreaGrille();
+                            terrain = grilleRestart;
+                            scores = 0;
+                            DescAuto();
+                                break;
+                            case MessageBoxResult.No:
+                                System.Environment.Exit(-1);
+                                break;
+                        }
                     }
                 }
             }

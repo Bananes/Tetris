@@ -9,13 +9,18 @@
         Title="MainWindow" Height="800" Width="740">
     <Grid Background="Black">
 
-        <Canvas x:Name="gameField" HorizontalAlignment="Left" Height="600" Margin="47,101,0,0" VerticalAlignment="Top" Width="400">
+        <Canvas x:Name="gameField" HorizontalAlignment="Left" Height="600" Margin="59,90,0,0" VerticalAlignment="Top" Width="400">
 
 
         </Canvas>
         <Button x:Name="bStart" Foreground="White" Content="START" HorizontalAlignment="Left" Height="50" Margin="508,169,0,0" VerticalAlignment="Top" Width="151" Click="bStart_Click" FontFamily="Jokerman" FontSize="21.333" Background="#FF7373CD"/>
         <TextBlock x:Name="textBlock" Foreground="White" HorizontalAlignment="Left" Margin="508,249,0,0" TextWrapping="Wrap" Text="Score :" VerticalAlignment="Top" Height="38" Width="151" FontFamily="Arial Black" FontSize="33.333"/>
         <TextBlock x:Name="score" Foreground="White" HorizontalAlignment="Left" Height="48" Margin="545,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" FontSize="29.333"/>
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="154" Margin="488,10,0,0" VerticalAlignment="Top" Width="192">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="tetris.png"/>
+            </Image.OpacityMask>
+        </Image>
 
     </Grid>
 </Window>

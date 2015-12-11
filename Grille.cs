@@ -17,6 +17,7 @@ namespace Project_Tetra
 
         public void CreaGrille()
         {
+            //Cette méthode initialise la grille
             var x = 0;
             var y = 0;
             for (int i = 0; i < 15; i++)
